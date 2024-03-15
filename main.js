@@ -19,7 +19,8 @@ function main() {
   let started = false;
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
-  const button = document.getElementById("start");
+  const start = document.getElementById("start");
+  const clear = document.getElementById("clear")
   const cellCountX = 200;
   const cellCountY = 150;
   const cellSize = 15;
@@ -133,7 +134,7 @@ function main() {
       arr.set(tempX, tempY, 0);
     }
   });
-  button.addEventListener("click", () => {
+  start.addEventListener("click", () => {
     started = !started;
   });
   setInterval(() => {
@@ -141,11 +142,13 @@ function main() {
       gameRules(cellCountY, cellCountX, arr);
       ctx.fillStyle = "grey";
     }
-
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
     //prettier-ignore
     renderGrid(cellCountX, cellCountY, cellSize, scale, ctx, positonOfGrid.x , positonOfGrid.y, arr);
   }, 66);
+  clear.addEventListener("click", () =>{
+    arr = new twoDimentionalArray(cellCountX, cellCountY);
+  })
 }
 
 function mousePosToGridPos(x, y, cellSize, scale) {
