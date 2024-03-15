@@ -20,7 +20,7 @@ function main() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
   const start = document.getElementById("start");
-  const clear = document.getElementById("clear")
+  const clear = document.getElementById("clear");
   const cellCountX = 200;
   const cellCountY = 150;
   const cellSize = 15;
@@ -97,7 +97,7 @@ function main() {
     //prettier-ignore
     mousePos = mousePosToGridPos( e.clientX, e.clientY, cellSize, scale, positonOfGrid);
 
-    scrollAmount += e.deltaY / 1000;
+    scrollAmount -= e.deltaY / 1000;
 
     scale = Math.pow(scrollAmount, 1.01);
 
@@ -146,9 +146,9 @@ function main() {
     //prettier-ignore
     renderGrid(cellCountX, cellCountY, cellSize, scale, ctx, positonOfGrid.x , positonOfGrid.y, arr);
   }, 66);
-  clear.addEventListener("click", () =>{
+  clear.addEventListener("click", () => {
     arr = new twoDimentionalArray(cellCountX, cellCountY);
-  })
+  });
 }
 
 function mousePosToGridPos(x, y, cellSize, scale) {
